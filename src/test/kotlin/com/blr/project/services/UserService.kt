@@ -8,10 +8,21 @@ import org.springframework.stereotype.Component
 @Component
 class UserService : AbstractClient() {
 
-    private val path = "/api/unknown"
+    private val path = "/api/users"
 
     @Loggable("Get user.")
-    fun get(): ValidatableResponse {
+    fun getUsers(): ValidatableResponse {
+        return given()
+                .basePath(path)
+                .`when`()
+                .log().all()
+                .get()
+                .then()
+                .log().all()
+    }
+
+    @Loggable("Get specific user by id={0}.")
+    fun getUser(id: Int): ValidatableResponse {
         return given()
                 .basePath(path)
                 .`when`()

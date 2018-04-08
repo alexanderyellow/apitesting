@@ -15,7 +15,7 @@ class TestExtension : BeforeAllCallback, AfterEachCallback, BeforeEachCallback {
     }
 
     override fun beforeEach(context: ExtensionContext?) {
-        testLogger.info("*** Start test: ${context!!.requiredTestMethod.name} ***\n")
+        testLogger.info("*** Start test: ${context!!.requiredTestMethod.name} ***")
     }
 
     override fun afterEach(context: ExtensionContext?) {

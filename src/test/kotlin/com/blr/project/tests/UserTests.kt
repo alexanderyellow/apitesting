@@ -11,11 +11,11 @@ class UserTests: AbstractTest() {
 
     @Test
     fun `test getUser service`() {
-        userService.get()
+        userService.getUsers()
     }
 
     @Test
     fun `test 2`() {
-        println("test2")
+        userService.getUser(1)
     }
 }

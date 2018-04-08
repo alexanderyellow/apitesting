@@ -1,7 +1,7 @@
 package com.blr.project.context
 
-import com.blr.project.logger.APILogger
 import com.blr.project.logger.LoggerPrintStream
+import com.blr.project.logger.logger
 import io.restassured.RestAssured
 import io.restassured.config.ConnectionConfig
 import io.restassured.config.EncoderConfig
@@ -27,7 +27,7 @@ class RestConfig {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails()
 
         val closeIdleConnectionConfig = ConnectionConfig.CloseIdleConnectionConfig(idleTime, TimeUnit.SECONDS)
-        val loggerPrintStream = LoggerPrintStream(APILogger.get())
+        val loggerPrintStream = LoggerPrintStream(logger())
 
         RestAssured.config = RestAssured
                 .config()

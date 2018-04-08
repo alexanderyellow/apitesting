@@ -33,7 +33,20 @@ class UserAspect {
 
     @Around("servicePointcut() && @annotation(loggable)")
     fun logServices(pjp: ProceedingJoinPoint, loggable: Loggable): Any? {
-        logger(pjp.target.javaClass.name).debug(loggable.value)
+
+        val comment = formatComment(loggable.value, pjp.args)
+
+        logger(pjp.target.javaClass.name).debug(comment)
         return pjp.proceed()
+    }
+
+    private fun formatComment(comment: String, args: Array<Any>): String {
+        var output = ""
+
+        for ((index, value) in args.withIndex()) {
+            output = comment.replace("{$index}", "$value")
+        }
+
+        return output
     }
 }
