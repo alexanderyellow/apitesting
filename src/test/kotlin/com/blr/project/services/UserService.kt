@@ -1,6 +1,6 @@
-package com.adform.dmp.services
+package com.blr.project.services
 
-import com.adform.dmp.logger.Loggable
+import com.blr.project.logger.Loggable
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
 import io.restassured.response.ValidatableResponse

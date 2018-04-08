@@ -1,4 +1,4 @@
-package com.adform.dmp.logger
+package com.blr.project.logger
 
 import org.slf4j.Logger
 import java.io.IOException
@@ -20,16 +20,13 @@ import java.io.PrintStream
  * <pre>
  *             resp.then().log().all( true );
  * </pre>
- *
- * @author Heri Bender
- * @version 1.0 (28.10.2015)
  */
 class ToLoggerPrintStream {
     private val PROPERTY = System.getProperty("line.separator")
     /**
      * Logger for this class
      */
-    private lateinit var myLog: Logger
+    private var myLog: Logger
     private var myPrintStream: PrintStream? = null
 
     /**
@@ -38,7 +35,6 @@ class ToLoggerPrintStream {
      * @param aLogger
      */
     constructor (aLogger: Logger) {
-        //Any()
         myLog = aLogger
     }
 

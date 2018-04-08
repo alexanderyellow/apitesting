@@ -1,7 +1,7 @@
-package com.adform.dmp.tests
+package com.blr.project.tests
 
-import com.adform.dmp.context.RestConfig
-import com.adform.dmp.context.TestConfig
+import com.blr.project.context.RestConfig
+import com.blr.project.context.TestConfig
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

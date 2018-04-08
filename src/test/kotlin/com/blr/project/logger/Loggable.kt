@@ -1,4 +1,4 @@
-package com.adform.dmp.logger
+package com.blr.project.logger
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)

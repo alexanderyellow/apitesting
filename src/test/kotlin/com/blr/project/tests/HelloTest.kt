@@ -1,6 +1,6 @@
-package com.adform.dmp.tests
+package com.blr.project.tests
 
-import com.adform.dmp.services.UserService
+import com.blr.project.services.UserService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 

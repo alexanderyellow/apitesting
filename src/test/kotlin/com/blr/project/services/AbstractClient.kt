@@ -1,4 +1,4 @@
-package com.adform.dmp.services
+package com.blr.project.services
 
 open class AbstractClient {
 

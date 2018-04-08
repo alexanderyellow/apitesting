@@ -1,7 +1,7 @@
-package com.adform.dmp.context
+package com.blr.project.context
 
-import com.adform.dmp.logger.Log
-import com.adform.dmp.logger.ToLoggerPrintStream
+import com.blr.project.logger.Log
+import com.blr.project.logger.ToLoggerPrintStream
 import io.restassured.RestAssured
 import io.restassured.config.ConnectionConfig
 import io.restassured.config.EncoderConfig

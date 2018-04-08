@@ -1,4 +1,4 @@
-package com.adform.dmp.logger
+package com.blr.project.logger
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

@@ -1,6 +1,6 @@
-package com.adform.dmp.model
+package com.blr.project.model
 
-import com.adform.dmp.logger.Loggable
+import com.blr.project.logger.Loggable
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
