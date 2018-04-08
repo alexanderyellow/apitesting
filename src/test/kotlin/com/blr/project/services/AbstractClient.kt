@@ -12,6 +12,9 @@ import org.hamcrest.Matchers.anyOf
 
 open class AbstractClient {
 
+    /**
+     * List of valid status codes
+     */
     private val statusCodeMatcher: Matcher<Int> =
             anyOf<Int>(`is`<Int>(200), `is`<Int>(201), `is`<Int>(202), `is`<Int>(204))
 
@@ -48,7 +51,7 @@ open class AbstractClient {
                 RestAssured
                         .given()
                         .basePath(path)
-                        .body(body, ObjectMapperType.JACKSON_2)
+                        .body(body, ObjectMapperType.GSON)
 
         return response(Method.PUT, requestSpecification)
     }

@@ -5,4 +5,9 @@ import java.util.*
 /**
  * Generate random string
  */
-fun randomString(prefix: String = "") = "${prefix}_${Date().time}"
+
+object RandomUtils {
+    fun randomString(prefix: String = ""): String {
+        return "${prefix}_${Date().time}"
+    }
+}

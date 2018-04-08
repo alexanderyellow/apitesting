@@ -2,10 +2,12 @@ package com.blr.project.tests
 
 import com.blr.project.model.User
 import com.blr.project.services.UserService
+import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import kotlin.test.assertNotNull
 
-class UserTests: AbstractTest() {
+class UserTests : AbstractTest() {
 
     @Autowired
     private lateinit var userService: UserService
@@ -15,25 +17,39 @@ class UserTests: AbstractTest() {
     @Test
     fun `test get all users`() {
         userService.get()
+                .body("data", hasSize<List<User>>(3))
+                .assertThat()
     }
 
     @Test
     fun `test get user`() {
         userService.get(1)
+                .body("data", notNullValue<User>(User::class.java))
+                .assertThat()
     }
 
     @Test
     fun `test create user`() {
-        userService.create(user)
+        val createdUser = userService.create(user)
+                .extract()
+                .`as`(User::class.java)
+
+        assertNotNull(createdUser, "User was created incorrectly.")
     }
 
     @Test
     fun `test update user`() {
-        userService.update(1, User())
+        val updatedUser = userService.update(1, User())
+                .extract()
+                .`as`(User::class.java)
+
+        assertNotNull(updatedUser, "User was updated incorrectly.")
     }
 
     @Test
     fun `test delete user`() {
         userService.delete(1)
+                .body(isEmptyOrNullString())
+                .assertThat()
     }
 }
