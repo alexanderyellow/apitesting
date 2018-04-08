@@ -1,6 +1,9 @@
 package com.blr.project.context.aspects
 
+import com.blr.project.common.MODEL_POINTCUT
+import com.blr.project.common.SERVICE_POINTCUT
 import com.blr.project.logger.Loggable
+import com.blr.project.logger.logger
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -9,11 +12,11 @@ import org.aspectj.lang.annotation.Pointcut
 @Aspect
 class UserAspect {
 
-    @Pointcut("execution(* com.adform.dmp.model.*.get*(*))")
+    @Pointcut(MODEL_POINTCUT)
     fun modelPointcut() {
     }
 
-    @Pointcut("execution(* com.adform.dmp.services.*.*(*))")
+    @Pointcut(SERVICE_POINTCUT)
     fun servicePointcut() {
     }
 
@@ -24,11 +27,13 @@ class UserAspect {
 
     @Around("modelPointcut() && @annotation(loggable)")
     fun logModel(pjp: ProceedingJoinPoint, loggable: Loggable): Any? {
+        logger(pjp.target.javaClass.name).debug(loggable.value)
         return pjp.proceed()
     }
 
     @Around("servicePointcut() && @annotation(loggable)")
     fun logServices(pjp: ProceedingJoinPoint, loggable: Loggable): Any? {
+        logger(pjp.target.javaClass.name).debug(loggable.value)
         return pjp.proceed()
     }
 }

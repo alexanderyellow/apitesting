@@ -12,7 +12,7 @@ import java.io.PrintStream
  * Usage:<br>
  * initializing in @BeforeClass of the unit test:
  * <pre>
- *          ToLoggerPrintStream loggerPrintStream = new ToLoggerPrintStream( myLog );
+ *          LoggerPrintStream loggerPrintStream = new LoggerPrintStream( myLog );
  *          RestAssured.config = RestAssured.config().logConfig(
  *                                 new LogConfig( loggerPrintStream.getPrintStream(), true ) );
  * </pre>
@@ -21,27 +21,22 @@ import java.io.PrintStream
  *             resp.then().log().all( true );
  * </pre>
  */
-class ToLoggerPrintStream {
+class LoggerPrintStream {
+
     private val PROPERTY = System.getProperty("line.separator")
-    /**
-     * Logger for this class
-     */
-    private var myLog: Logger
+
+    private var myLogger: Logger
     private var myPrintStream: PrintStream? = null
 
-    /**
-     * Constructor
-     *
-     * @param aLogger
-     */
-    constructor (aLogger: Logger) {
-        myLog = aLogger
+    constructor(myLogger: Logger): super() {
+        this.myLogger = myLogger
     }
 
     /**
      * @return printStream
      */
     fun getPrintStream(): PrintStream? {
+
         if (myPrintStream == null) {
             val output = object : OutputStream() {
                 private var myStringBuilder = StringBuilder()
@@ -57,7 +52,7 @@ class ToLoggerPrintStream {
                 override fun flush() {
                     val msg = this.myStringBuilder.toString()
                     if (!(msg == "" || msg == PROPERTY || msg == "\n")) {
-                        myLog.trace(msg)
+                        myLogger.trace(msg)
                     }
                     myStringBuilder = StringBuilder()
                 }
@@ -68,4 +63,15 @@ class ToLoggerPrintStream {
 
         return myPrintStream
     }
+
+    fun requestPrintStream(): PrintStream? {
+        //println("requestPrintStream!!!!")
+        return getPrintStream()
+    }
+
+    fun responsePrintStream(): PrintStream? {
+        //println("responsePrintStream!!!!")
+        return getPrintStream()
+    }
+
 }

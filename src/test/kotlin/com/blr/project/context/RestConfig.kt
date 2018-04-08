@@ -1,12 +1,11 @@
 package com.blr.project.context
 
-import com.blr.project.logger.Log
-import com.blr.project.logger.ToLoggerPrintStream
+import com.blr.project.logger.APILogger
+import com.blr.project.logger.LoggerPrintStream
 import io.restassured.RestAssured
 import io.restassured.config.ConnectionConfig
 import io.restassured.config.EncoderConfig
 import io.restassured.config.LogConfig
-import io.restassured.config.RestAssuredConfig
 import io.restassured.http.ContentType
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
@@ -25,20 +24,23 @@ class RestConfig {
         RestAssured.baseURI = baseUrl
         RestAssured.useRelaxedHTTPSValidation()
 
-        RestAssured.config = RestAssuredConfig()
-                .encoderConfig(EncoderConfig.encoderConfig().defaultContentCharset("UTF-8")
-                .encodeContentTypeAs("application-json", ContentType.JSON))
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails()
 
         val closeIdleConnectionConfig = ConnectionConfig.CloseIdleConnectionConfig(idleTime, TimeUnit.SECONDS)
-        RestAssured
-                .config()
-                .connectionConfig(ConnectionConfig.connectionConfig()
-                .closeIdleConnectionsAfterEachResponseAfter(closeIdleConnectionConfig))
+        val loggerPrintStream = LoggerPrintStream(APILogger.get())
 
-        val loggerPrintStream = ToLoggerPrintStream(Log.logger)
         RestAssured.config = RestAssured
                 .config()
+                .encoderConfig(EncoderConfig.encoderConfig().defaultContentCharset("UTF-8")
+                        .encodeContentTypeAs("application-json", ContentType.JSON))
+                .connectionConfig(ConnectionConfig.connectionConfig()
+                        .closeIdleConnectionsAfterEachResponseAfter(closeIdleConnectionConfig))
                 .logConfig(LogConfig(loggerPrintStream.getPrintStream(), true))
+
+
+        /*RequestSpecBuilder()
+                .addFilter(RequestLoggingFilter(LogDetail.ALL, true, loggerPrintStream.requestPrintStream()))
+                .addFilter(ResponseLoggingFilter(LogDetail.ALL, true, loggerPrintStream.responsePrintStream()))*/
     }
 
 }

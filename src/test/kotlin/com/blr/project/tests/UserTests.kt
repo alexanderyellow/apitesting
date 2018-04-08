@@ -4,13 +4,18 @@ import com.blr.project.services.UserService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-class HelloTest: AbstractTest() {
+class UserTests: AbstractTest() {
 
     @Autowired
     private lateinit var userService: UserService
 
     @Test
-    fun testUserService() {
-        
+    fun `test getUser service`() {
+        userService.get()
+    }
+
+    @Test
+    fun `test 2`() {
+        println("test2")
     }
 }

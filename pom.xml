@@ -198,7 +198,7 @@
                 <configuration>
                     <failIfNoTests>true</failIfNoTests>
                     <includes>
-                        <include>com.adform.dmp.tests.HelloTest</include>
+                        <include>com.blr.project.tests.UserTests</include>
                     </includes>
                 </configuration>
             </plugin>
