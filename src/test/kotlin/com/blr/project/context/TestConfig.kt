@@ -6,6 +6,9 @@ import com.blr.project.context.aspects.UserAspect
 import org.springframework.context.annotation.*
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer
 
+/**
+ * Spring configuration class
+ */
 @Configuration
 @EnableAspectJAutoProxy
 @PropertySource(CONFIG_PROPERTY) //${env}.properties

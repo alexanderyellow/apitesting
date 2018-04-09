@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.concurrent.TimeUnit
 
+/**
+ * Class for configuring RestAssured client
+ */
 @Component
 class RestConfig {
 

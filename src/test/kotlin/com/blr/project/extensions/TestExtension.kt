@@ -7,6 +7,9 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.slf4j.Logger
 
+/**
+ * Junit extension for all test classes
+ */
 class TestExtension : BeforeAllCallback, AfterEachCallback, BeforeEachCallback {
     private lateinit var testLogger: Logger
 

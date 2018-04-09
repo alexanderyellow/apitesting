@@ -10,6 +10,9 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.anyOf
 
+/**
+ * Common client
+ */
 open class AbstractClient {
 
     /**

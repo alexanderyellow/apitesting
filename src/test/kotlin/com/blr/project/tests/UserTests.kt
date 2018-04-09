@@ -7,24 +7,30 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import kotlin.test.assertNotNull
 
+/**
+ * Test class contains test methods with the simplest checks
+ */
 class UserTests : AbstractTest() {
 
     @Autowired
     private lateinit var userService: UserService
 
     private var user = User()
+    private val userId = 1
+    private val jsonProperty = "data"
+
 
     @Test
     fun `test get all users`() {
         userService.get()
-                .body("data", hasSize<List<User>>(3))
+                .body(jsonProperty, hasSize<List<User>>(3))
                 .assertThat()
     }
 
     @Test
     fun `test get user`() {
-        userService.get(1)
-                .body("data", notNullValue<User>(User::class.java))
+        userService.get(userId)
+                .body(jsonProperty, notNullValue<User>(User::class.java))
                 .assertThat()
     }
 
@@ -39,7 +45,7 @@ class UserTests : AbstractTest() {
 
     @Test
     fun `test update user`() {
-        val updatedUser = userService.update(1, User())
+        val updatedUser = userService.update(userId, User())
                 .extract()
                 .`as`(User::class.java)
 
@@ -48,7 +54,7 @@ class UserTests : AbstractTest() {
 
     @Test
     fun `test delete user`() {
-        userService.delete(1)
+        userService.delete(userId)
                 .body(isEmptyOrNullString())
                 .assertThat()
     }

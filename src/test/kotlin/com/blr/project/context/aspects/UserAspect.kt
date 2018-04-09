@@ -15,11 +15,9 @@ class UserAspect {
     fun servicePointcut() {
     }
 
-    /*@Before("getNamePointcut() && args(value))")
-    fun logStringArguments(value: String) {
-        println("String argument passed=$value")
-    }*/
-
+    /**
+     * Log service methods which is labeled by @Loggable annotation
+     */
     @Around("servicePointcut() && @annotation(loggable)")
     fun logServices(pjp: ProceedingJoinPoint, loggable: Loggable): Any? {
 
